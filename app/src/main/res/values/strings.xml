@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">CalorieChase</string>
+    
+    <!-- Activity Type Options -->
+    <string-array name="activity_types">
+        <item>Run</item>
+        <item>Jog</item>
+        <item>Walk</item>
+    </string-array>
+</resources>

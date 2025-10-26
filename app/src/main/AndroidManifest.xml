@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Internet permission for API calls -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    
+    <!-- Permissions for location and activity recognition -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission
+        android:name="android.permission.ACCESS_BACKGROUND_LOCATION"
+        tools:ignore="BackgroundLocationPolicy" />
+    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
+    <uses-permission
+        android:name="android.permission.FOREGROUND_SERVICE"
+        tools:ignore="ForegroundServicesPolicy" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
+    
+    <!-- Audio recording permissions -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    
+    <!-- Hardware features -->
+    <uses-feature android:name="android.hardware.sensor.stepcounter" android:required="false" />
+    <uses-feature android:name="android.hardware.sensor.stepdetector" android:required="false" />
+
+    <application
+        android:allowBackup="true"
+        android:usesCleartextTraffic="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.CalorieChase">
+        
+        <!-- Google Maps API Key -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+        
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true"
+            android:theme="@style/SplashTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+        
+        <activity
+            android:name=".OnboardingActivity"
+            android:exported="false" />
+            
+        <activity
+            android:name=".WelcomeActivity"
+            android:exported="false" />
+            
+        <activity
+            android:name=".InfoSlidesActivity"
+            android:exported="false" />
+            
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+            
+        <activity
+            android:name=".SignInActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        
+        <activity
+            android:name=".PersonalInfoActivity"
+            android:exported="false" />
+            
+        <activity
+            android:name=".PermissionsActivity"
+            android:exported="false" />
+            
+        <activity
+            android:name=".FinishActivity"
+            android:exported="false" />
+        
+        <activity
+            android:name=".SessionSetupActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+            
+        <activity
+            android:name=".MapSearchActivity"
+            android:exported="false" />
+            
+        <activity
+            android:name=".SessionMapActivity"
+            android:exported="false" />
+            
+        <activity
+            android:name=".GameplayActivity"
+            android:exported="false" />
+            
+        <activity
+            android:name=".ActiveSessionActivity"
+            android:exported="false" />
+            
+        <activity
+            android:name=".SessionSummaryActivity"
+            android:exported="false" />
+            
+        <activity
+            android:name=".SessionSummaryDirectActivity"
+            android:exported="false" />
+        
+        <!-- Tracking Service for background session management -->
+        <service
+            android:name=".TrackingService"
+            android:enabled="true"
+            android:exported="false"
+            android:foregroundServiceType="location" />
+            
+        <!-- Geofence Receiver for treasure collection -->
+        <receiver
+            android:name=".location.GeofenceReceiver"
+            android:enabled="true"
+            android:exported="false" />
+            
+        <!-- New Geofence Receiver for gameplay -->
+        <receiver
+            android:name=".GeofenceReceiver"
+            android:enabled="true"
+            android:exported="false" />
+
+        
+        <activity
+            android:name=".MainActivity"
+            android:exported="true" >
+
+
+        </activity>
+            
+    </application>
+
+</manifest>

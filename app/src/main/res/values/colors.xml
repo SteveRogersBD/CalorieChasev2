@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base Colors -->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    
+    <!-- Light Background Theme -->
+    <color name="background_light">#FFF8FAFC</color>
+    <color name="surface_light">#FFFFFFFF</color>
+    <color name="surface_variant">#FFF1F5F9</color>
+    
+    <!-- Vibrant Primary Colors -->
+    <color name="primary_orange">#FFFF6B35</color>
+    <color name="primary_orange_dark">#FFE55A2B</color>
+    <color name="primary_orange_light">#FFFF8A5B</color>
+    
+    <!-- Vibrant Secondary Colors -->
+    <color name="secondary_teal">#FF4ECDC4</color>
+    <color name="secondary_teal_dark">#FF3CBAB0</color>
+    <color name="secondary_teal_light">#FF6FD4CC</color>
+    
+    <!-- Vibrant Accent Colors -->
+    <color name="accent_blue">#FF45B7D1</color>
+    <color name="accent_blue_dark">#FF3A9BC1</color>
+    <color name="accent_blue_light">#FF5FC3D8</color>
+    
+    <!-- Additional Vibrant Colors -->
+    <color name="vibrant_purple">#FF8B5CF6</color>
+    <color name="vibrant_pink">#FFEC4899</color>
+    <color name="vibrant_green">#FF10B981</color>
+    <color name="vibrant_yellow">#FFF59E0B</color>
+    
+    <!-- Text Colors -->
+    <color name="text_primary">#FF1E293B</color>
+    <color name="text_secondary">#FF64748B</color>
+    <color name="text_tertiary">#FF94A3B8</color>
+    <color name="text_on_primary">#FFFFFFFF</color>
+    
+    <!-- Gradient Colors -->
+    <color name="gradient_start">#FFFF6B35</color>
+    <color name="gradient_middle">#FFEC4899</color>
+    <color name="gradient_end">#FF8B5CF6</color>
+    
+    <!-- Status Colors -->
+    <color name="success">#FF10B981</color>
+    <color name="warning">#FFF59E0B</color>
+    <color name="warning_background">#FFFEF3C7</color>
+    <color name="warning_text">#FF92400E</color>
+    <color name="error">#FFEF4444</color>
+    
+    <!-- UI Elements -->
+    <color name="divider">#FFE2E8F0</color>
+    
+    <!-- Shadow and Elevation -->
+    <color name="shadow_light">#1A000000</color>
+    <color name="shadow_medium">#33000000</color>
+    
+    <!-- Additional UI Colors -->
+    <color name="primary">@color/primary_orange</color>
+    <color name="primary_light">@color/primary_orange_light</color>
+    <color name="secondary">@color/secondary_teal</color>
+    <color name="accent">@color/accent_blue</color>
+    <color name="background">@color/background_light</color>
+    <color name="surface">@color/surface_light</color>
+    <color name="white_70">#B3FFFFFF</color>
+    <color name="black_overlay">#CC000000</color>
+    <color name="warning_overlay">#CCF59E0B</color>
+</resources>
