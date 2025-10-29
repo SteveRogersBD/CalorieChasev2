@@ -20,3 +20,10 @@ LocoAgent/.venv
 LocoAgent/.gitignore
 /.kiro
 /docs
+
+Server/UserService/src/main/resources/application.properties
+Server/ActivityService/src/main/resources/application.properties
+Server/ScoreService/src/main/resources/application.properties
+Server/TrackService/src/main/resources/application.properties
+Server/WPService/src/main/resources/application.properties
+Server/AuthService/src/main/resources/application.properties
