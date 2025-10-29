@@ -222,8 +222,8 @@ Once installed:
 We welcome contributions from the community! Here's how you can help:
 
 ### Ways to Contribute
-- **Bug Reports**: Found a bug? [Open an issue](https://github.com/SteveRogersBD/CalorieChase/issues)
-- **Feature Requests**: Have an idea? [Start a discussion](https://github.com/SteveRogersBD/CalorieChase/discussions)
+- **Bug Reports**: Found a bug? [Open an issue](https://github.com/SteveRogersBD/CalorieChasev2/issues)
+- **Feature Requests**: Have an idea? [Start a discussion](https://github.com/SteveRogersBD/CalorieChasev2/discussions)
 - **Code Contributions**: Submit pull requests for bug fixes or new features
 - **Documentation**: Help improve our docs and tutorials
 ---
