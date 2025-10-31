@@ -1,0 +1,209 @@
+openapi: 3.0.3
+info:
+  title: Score Service API
+  description: API for managing activity scores and metrics
+  version: 1.0.0
+  contact:
+    name: Score Service Team
+
+servers:
+  - url: http://localhost:8084
+    description: Local development server
+
+tags:
+  - name: Score Management
+    description: Operations related to score and metrics management
+
+paths:
+  /score:
+    post:
+      tags:
+        - Score Management
+      summary: Create a new score
+      description: Creates a new score record for an activity session
+      operationId: createScore
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Score'
+      responses:
+        '200':
+          description: Score created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+        '400':
+          description: Invalid input
+        '500':
+          description: Internal server error
+
+    get:
+      tags:
+        - Score Management
+      summary: Get all scores
+      description: Retrieves a list of all scores
+      operationId: getAllScores
+      responses:
+        '200':
+          description: Scores retrieved successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ApiResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Score'
+        '500':
+          description: Internal server error
+
+  /score/{id}:
+    get:
+      tags:
+        - Score Management
+      summary: Get score by ID
+      description: Retrieves a specific score by its ID
+      operationId: getScoreById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Score ID
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Score retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+        '404':
+          description: Score not found
+        '500':
+          description: Internal server error
+
+    put:
+      tags:
+        - Score Management
+      summary: Update score
+      description: Updates an existing score record
+      operationId: updateScore
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Score ID
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Score'
+      responses:
+        '200':
+          description: Score updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+        '404':
+          description: Score not found
+        '400':
+          description: Invalid input
+        '500':
+          description: Internal server error
+
+    delete:
+      tags:
+        - Score Management
+      summary: Delete score
+      description: Deletes a score record
+      operationId: deleteScore
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Score ID
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Score deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+        '404':
+          description: Score not found
+        '500':
+          description: Internal server error
+
+components:
+  schemas:
+    Score:
+      type: object
+      required:
+        - sessionId
+        - score
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Score ID
+        sessionId:
+          type: integer
+          format: int64
+          description: ID of the associated activity session
+        score:
+          type: integer
+          description: Overall score for the activity
+        distanceCovered:
+          type: integer
+          description: Distance covered in meters
+        distanceAssigned:
+          type: integer
+          description: Distance assigned/target in meters
+        duration:
+          type: string
+          description: Duration of the activity
+        stepsTaken:
+          type: integer
+          description: Number of steps taken
+        caloriesBurnt:
+          type: integer
+          description: Calories burnt during the activity
+        treasuresCollected:
+          type: integer
+          description: Number of treasures collected (gamification)
+        treasuresAssigned:
+          type: integer
+          description: Number of treasures assigned/target
+        createdAt:
+          type: string
+          format: date-time
+          description: Score creation timestamp
+
+    ApiResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Indicates if the operation was successful
+        message:
+          type: string
+          description: Response message
+        data:
+          type: object
+          description: Response data

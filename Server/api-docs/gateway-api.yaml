@@ -1,0 +1,74 @@
+openapi: 3.0.3
+info:
+  title: Gateway API
+  description: API Gateway for routing requests to microservices
+  version: 1.0.0
+  contact:
+    name: Gateway Team
+
+servers:
+  - url: http://localhost:8080
+    description: Local development server
+
+tags:
+  - name: Gateway
+    description: Gateway operations
+
+paths:
+  /main/:
+    get:
+      tags:
+        - Gateway
+      summary: Main endpoint
+      description: Simple test endpoint for the gateway
+      operationId: main
+      responses:
+        '200':
+          description: Gateway is running
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: Hello World!
+
+  /user/**:
+    x-gateway-route:
+      description: Routes all /user/** requests to User Service
+      target: http://localhost:8081
+      
+  /public/auth/**:
+    x-gateway-route:
+      description: Routes all /public/auth/** requests to Auth Service
+      target: http://localhost:8082
+      
+  /session/**:
+    x-gateway-route:
+      description: Routes all /session/** requests to Activity Service
+      target: http://localhost:8083
+      
+  /score/**:
+    x-gateway-route:
+      description: Routes all /score/** requests to Score Service
+      target: http://localhost:8084
+
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+          description: Error timestamp
+        status:
+          type: integer
+          description: HTTP status code
+        error:
+          type: string
+          description: Error type
+        message:
+          type: string
+          description: Error message
+        path:
+          type: string
+          description: Request path

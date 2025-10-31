@@ -95,6 +95,14 @@ public class UserService {
             throw new IllegalStateException("Invalid password");
         return user;
     }
+    
+    public User getUserByUsername(String username)
+    {
+        return userRepo.findByUsername(username)
+                .orElseThrow(() ->
+                        new UserNotFoundException("User not found with username: " +
+                                username));
+    }
 
 
 }

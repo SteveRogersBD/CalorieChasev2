@@ -1,0 +1,212 @@
+openapi: 3.0.3
+info:
+  title: Auth Service API
+  description: API for authentication and authorization
+  version: 1.0.0
+  contact:
+    name: Auth Service Team
+
+servers:
+  - url: http://localhost:8082
+    description: Local development server
+
+tags:
+  - name: Authentication
+    description: Operations related to user authentication
+
+paths:
+  /public/auth/test:
+    get:
+      tags:
+        - Authentication
+      summary: Test endpoint
+      description: Simple test endpoint to verify service is running
+      operationId: test
+      responses:
+        '200':
+          description: Service is running
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: Hello World!
+
+  /public/auth/login:
+    post:
+      tags:
+        - Authentication
+      summary: User login
+      description: Authenticates a user and returns a JWT token
+      operationId: login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LogInRequest'
+      responses:
+        '200':
+          description: Login successful
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ApiResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: string
+                        description: JWT token
+        '401':
+          description: Invalid credentials
+        '500':
+          description: Internal server error
+
+  /public/auth/register:
+    post:
+      tags:
+        - Authentication
+      summary: User registration
+      description: Registers a new user and returns a JWT token
+      operationId: register
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterRequest'
+      responses:
+        '200':
+          description: Registration successful
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ApiResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          User:
+                            $ref: '#/components/schemas/User'
+                          Token:
+                            type: string
+                            description: JWT token
+        '400':
+          description: Invalid registration data
+        '409':
+          description: User already exists
+        '500':
+          description: Internal server error
+
+  /public/auth/verify-token:
+    get:
+      tags:
+        - Authentication
+      summary: Verify JWT token
+      description: Validates a JWT token and returns user information
+      operationId: verifyToken
+      parameters:
+        - name: token
+          in: query
+          required: true
+          description: JWT token to verify
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Token is valid
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ApiResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          Token:
+                            type: string
+                            description: Validated JWT token
+                          User:
+                            $ref: '#/components/schemas/User'
+        '401':
+          description: Invalid or expired token
+        '500':
+          description: Internal server error
+
+components:
+  schemas:
+    LogInRequest:
+      type: object
+      required:
+        - email
+        - password
+      properties:
+        email:
+          type: string
+          format: email
+          description: User email
+        password:
+          type: string
+          format: password
+          description: User password
+
+    RegisterRequest:
+      type: object
+      required:
+        - username
+        - password
+        - email
+        - fullName
+      properties:
+        username:
+          type: string
+          description: Desired username
+        password:
+          type: string
+          format: password
+          description: User password
+        fullName:
+          type: string
+          description: Full name
+        email:
+          type: string
+          format: email
+          description: Email address
+
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: User ID
+        username:
+          type: string
+          description: Username
+        fullName:
+          type: string
+          description: Full name
+        email:
+          type: string
+          format: email
+          description: Email address
+        role:
+          type: string
+          description: User role
+
+    ApiResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Indicates if the operation was successful
+        message:
+          type: string
+          description: Response message
+        data:
+          type: object
+          description: Response data

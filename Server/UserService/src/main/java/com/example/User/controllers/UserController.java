@@ -1,7 +1,6 @@
 package com.example.User.controllers;
 
 import com.example.User.entities.*;
-import com.example.User.repos.UserRepo;
 import com.example.User.response.ApiResponse;
 import com.example.User.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,4 +65,12 @@ public class UserController {
         User user = userService.verifyUser(email,password);
         return ApiResponse.onSuccess("Verification Successful", user);
     }
+
+
+    @GetMapping("/username/{username}")
+    public ApiResponse<User> findByUsername(@PathVariable String username) {
+        return ApiResponse.onSuccess("User found successfully",
+                userService.findByUsername(username));
+    }
+
 }

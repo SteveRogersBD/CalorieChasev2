@@ -25,6 +25,9 @@ public class Session {
 
     private SessionType type;
 
+    @Column(name = "prompt",nullable = true)
+    private String prompt;
+
 
     @PrePersist
     public void prePersist() {

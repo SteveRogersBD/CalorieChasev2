@@ -11,7 +11,16 @@
         </processorPath>
         <module name="Gateway" />
       </profile>
-      <profile name="Annotation profile for User" enabled="true">
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="User" />
+        <module name="ActivityService" />
+        <module name="ScoreService" />
+        <module name="AuthService" />
+      </profile>
+      <profile name="Annotation profile for ActivityService" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -19,16 +28,7 @@
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.40/lombok-1.18.40.jar" />
         </processorPath>
         <module name="WPService" />
-        <module name="ActivityService" />
         <module name="TrackService" />
-        <module name="ScoreService" />
-      </profile>
-      <profile name="Maven default annotation processors profile" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <module name="AuthService" />
-        <module name="User" />
       </profile>
     </annotationProcessing>
   </component>

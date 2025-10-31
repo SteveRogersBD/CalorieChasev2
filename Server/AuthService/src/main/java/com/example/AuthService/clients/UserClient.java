@@ -20,4 +20,7 @@ public interface UserClient {
     public ApiResponse<User> verifyUser(@RequestParam String email,
                                         @RequestParam String password );
 
+    @GetMapping("/username/{username}")
+    public ApiResponse<User> findByUsername(@PathVariable String username);
+
 }

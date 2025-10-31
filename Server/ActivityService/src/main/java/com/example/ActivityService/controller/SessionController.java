@@ -1,6 +1,7 @@
 package com.example.ActivityService.controller;
 
 import com.example.ActivityService.entity.Session;
+import com.example.ActivityService.response.ApiResponse;
 import com.example.ActivityService.service.ActivityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,29 +17,32 @@ public class SessionController {
     private ActivityService activityService;
 
     @PostMapping
-    public ResponseEntity<Session> createSession(@RequestBody Session session) {
-        return ResponseEntity.ok(activityService.createSession(session));
+    public ApiResponse<Session> createSession(@RequestBody Session session) {
+        return ApiResponse.onSuccess("Session created successfully!!!",
+                activityService.createSession(session));
     }
 
     @GetMapping
-    public ResponseEntity<List<Session>> getAllSessions() {
-        return ResponseEntity.ok(activityService.getAllSessions());
+    public ApiResponse<List<Session>> getAllSessions() {
+        return ApiResponse.onSuccess("Sessions retrieved successfully!!!",
+                activityService.getAllSessions());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Session> getSessionById(@PathVariable Long id) {
-        return ResponseEntity.ok(activityService.getSessionById(id));
+    public ApiResponse<Session> getSessionById(@PathVariable Long id) {
+        return ApiResponse.onSuccess("Session retrieved successfully!!!",
+                activityService.getSessionById(id));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Session> updateSession(@PathVariable Long id, @RequestBody Session session) {
-        return ResponseEntity.ok(activityService.updateSession(id, session));
+    public ApiResponse<Session> updateSession(@PathVariable Long id, @RequestBody Session session) {
+        return ApiResponse.onSuccess("Session updated successfully!!!",
+                activityService.updateSession(id, session));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteSession(@PathVariable Long id) {
+    public ApiResponse<Void> deleteSession(@PathVariable Long id) {
         activityService.deleteSession(id);
-        return ResponseEntity.ok().build();
+        return ApiResponse.onSuccess("Session deleted successfully!!!", null);
     }
-
 }

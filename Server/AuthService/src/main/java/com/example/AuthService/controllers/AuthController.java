@@ -47,4 +47,18 @@ public class AuthController {
                 Map.of("User", user, "Token", token));
     }
 
+    @GetMapping("/verify-token")
+    public ApiResponse<Map<String,Object>>tokenVerification(String token) {
+
+        Boolean flag = jwtUtil.validateToken(token);
+        if (flag)
+        {
+            String username = jwtUtil.getUsernameFromJWT(token);
+            User user = userClient.findByUsername(username).getData();
+            return ApiResponse.onSuccess("Token Validated",
+                    Map.of("Token", token,"User", user ));
+        }
+        return ApiResponse.onError("Token unverified");
+    }
+
 }
