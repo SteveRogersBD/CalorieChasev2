@@ -1,4 +1,4 @@
-package com.example.User.entities;
+package com.example.Gateway.user;
 
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -32,9 +32,9 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    private String role;
     @Column(name = "created_at")
     private LocalDateTime createdAt;
+
     private String dp;
     private String gender;
     private String age;
@@ -45,10 +45,5 @@ public class User {
     public void prePersist() {
         this.createdAt = LocalDateTime.now();
         this.dp = null;
-        this.gender = null;
-        this.age = null;
-        this.weight = null;
-        this.height = null;
-        this.role = "USER";
     }
 }
